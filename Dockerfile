@@ -15,17 +15,22 @@ RUN apt-get update && apt-get install -y \
     xtail \
     libssl1.0.0
 
-# packages needed for basic shiny functionality
+# packages needed for basic shiny functionality.
 RUN R -e "install.packages(c('shiny', 'rmarkdown', 'devtools', 'quantmod', 'tidyverse', 'gsheet', 'ggplot2', 'shinydashboard', 'highcharter', 'shinyWidgets', 'latexpdf', 'log4r', 'shinyBS'), repos='https://cloud.r-project.org')"
 
 # install shinyproxy package with demo shiny application
 COPY shinyproxy_0.0.1.tar.gz /root/
 RUN R CMD INSTALL /root/shinyproxy_0.0.1.tar.gz
 RUN rm /root/shinyproxy_0.0.1.tar.gz
+# copy the app to the image
+
+RUN mkdir /root/euler
+COPY euler /root/euler
 
 # set host and port
 COPY Rprofile.site /usr/lib/R/etc/
 
 EXPOSE 3838
 
-CMD ["R", "-e", "shinyproxy::run_01_hello()"]
+#CMD ["R", "-e", "shinyproxy::run_01_hello()"]
+CMD ["R", "-e shiny::runApp('/root/euler')"]
