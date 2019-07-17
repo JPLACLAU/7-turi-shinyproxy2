@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libssl1.0.0
 
 # packages needed for basic shiny functionality.
-RUN R -e "install.packages(c('shiny', 'rmarkdown', 'devtools', 'quantmod', 'tidyverse', 'gsheet', 'ggplot2', 'shinydashboard', 'highcharter', 'shinyWidgets', 'latexpdf', 'log4r', 'shinyBS'), repos='https://cloud.r-project.org')"
+RUN R -e "install.packages(c('shiny', 'rmarkdown', 'devtools', 'quantmod', 'tidyverse', 'gsheet', 'ggplot2', 'shinydashboard', 'highcharter', 'shinyWidgets', 'latexpdf', 'log4r', 'shinyBS', 'Rmpfr'), repos='https://cloud.r-project.org')"
 
 # install shinyproxy package with demo shiny application
 COPY shinyproxy_0.0.1.tar.gz /root/
