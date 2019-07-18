@@ -36,4 +36,5 @@ COPY Rprofile.site /usr/lib/R/etc/
 EXPOSE 3838
 
 #CMD ["R", "-e", "shinyproxy::run_01_hello()"]
-CMD ["R", "-e shiny::runApp('/root/euler')"]
+#CMD ["R", "-e shiny::runApp('/root/euler')"]
+CMD ["R", "-e shiny::runApp('/root/turiappv0_1')"]
