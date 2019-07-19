@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libssl1.0.0
 
 # packages needed for basic shiny functionality.
-RUN R -e "install.packages(c('shiny', 'rmarkdown', 'devtools', 'quantmod', 'tidyverse', 'gsheet', 'ggplot2', 'shinydashboard', 'highcharter', 'shinyWidgets', 'latexpdf', 'log4r', 'shinyBS', 'Rmpfr'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('shiny','rmarkdown','devtools','quantmod','tidyverse','gsheet','ggplot2','shinydashboard','highcharter','shinyWidgets','latexpdf','log4r','shinyBS','Rmpfr'),dependencies=TRUE,repos='http://cran.rstudio.com/')"
 
 # install shinyproxy package with demo shiny application
 COPY shinyproxy_0.0.1.tar.gz /root/
@@ -36,5 +36,5 @@ COPY Rprofile.site /usr/lib/R/etc/
 EXPOSE 3838
 
 #CMD ["R", "-e", "shinyproxy::run_01_hello()"]
-#CMD ["R", "-e shiny::runApp('/root/euler')"]
-CMD ["R", "-e shiny::runApp('/root/turiappv0_1')"]
+CMD ["R", "-e shiny::runApp('/root/euler')"]
+#CMD ["R", "-e shiny::runApp('/root/turiappv0_1')"]
